@@ -1,6 +1,8 @@
 #![feature(lang_items)]
 #![no_std]
 
+use core::panic::PanicInfo;
+
 const BOTTOM: u8 = 63;
 const RIGHT_END: u8 = 127;
 
@@ -170,14 +172,8 @@ fn tone(frequency: u16, duration: u16) {
 pub extern fn rust_eh_personality() {
 }
 
-#[lang = "panic_fmt"]
+#[panic_handler]
 #[no_mangle]
-pub extern fn rust_begin_panic(
-    _msg: core::fmt::Arguments,
-    _file: &'static str,
-    _line: u32,
-    _column: u32
-) -> ! {
-    loop {
-    }
+pub extern fn rust_begin_panic(_info: &PanicInfo) -> ! {
+    loop {}
 }
