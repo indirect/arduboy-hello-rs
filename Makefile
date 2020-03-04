@@ -24,8 +24,10 @@ upload:
 	$(call do_build,--upload)
 
 define do_build
-	: IDE_PATH := $(IDE_PATH)
+	: BIN_PATH := $(BIN_PATH)
+	: AVR_PATH := $(AVR_PATH)
 	: PORT := $(PORT)
+	: SRCROOT := $(SRCROOT)
 	: SYSROOT := $(SYSROOT)
 	: IDE_PREF := $(IDE_PREF)
 	: ----------build-rust-program----------
